@@ -9,13 +9,11 @@ class GetPrediction(Resource):
     def post(self):
         from app import app
 
-        file = request.files['image']
+        file = request.files['file']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_path)
             output = predict(file_path)
-            if os.path.exists(file_path):
-                os.remove(file_path)
             return {"prediction": output}, 200
         return {}, 400
