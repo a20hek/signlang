@@ -12,13 +12,15 @@ export default function Home() {
 	};
 
 	const setImageAction = async (e) => {
+		setResult('loading...')
 		e.preventDefault();
 		const formData = new FormData();
 		formData.append('file', image);
-		axios
+		await axios
 			.post('http://localhost:5000/predict', formData)
-			.then((res) => setResult(res))
-			.then(() => console.log(result))
+			// .then((res)=>console.log(res.data.prediction))
+			.then((res) => setResult(res?.data.prediction))
+			// .then(() => console.log(result))
 			.catch((err) => console.warn(err));
 	};
 
@@ -50,23 +52,13 @@ export default function Home() {
 				<br />
 				<br />
 				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
 				<form onSubmit={setImageAction}>
 					<Input type='file' name='image' onChange={handleChange} />
 					<Button type='submit' name='upload' mx='auto' width='100%'>
 						Upload Image
 					</Button>
 				</form>
-				<Text color='#fff'>Result:{result}</Text>
+				<Heading color='#000' textAlign='center'>Result:{result}</Heading>
 			</Box>
 		</>
 	);

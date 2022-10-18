@@ -18,9 +18,9 @@ def predict(filepath):
     model = load_model()
     img_height = 180
     img_width = 180
-    new_image_path = new_pokemon_path = pathlib.Path(filepath)
+    new_image_path = pathlib.Path(filepath)
     img = keras.utils.load_img(
-        new_pokemon_path, target_size=(img_height, img_width)
+        new_image_path, target_size=(img_height, img_width)
     )
     img_array = keras.utils.img_to_array(img)
     img_array = np.expand_dims(img_array, 0) 
