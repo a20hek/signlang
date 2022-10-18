@@ -4,6 +4,7 @@ import { Input, Image, Flex, Text, Heading, Box, Button } from '@chakra-ui/react
 
 export default function Home() {
 	const [image, setImage] = useState('');
+	const [result, setResult] = useState('');
 
 	const handleChange = (e) => {
 		console.log(e.target.files);
@@ -14,43 +15,59 @@ export default function Home() {
 		e.preventDefault();
 		const formData = new FormData();
 		formData.append('file', image);
-		// const data = await fetch('http://localhost:5000/predict', {
-		// 	method: 'post',
-		// 	headers: { 'Content-Type': 'multipart/form-data' },
-		// 	body: formData,
-		// });
-		// // .then((res) => {
-		// // 	console.log(res);
-		// // });
-		// const uploadedImage = await data.json;
-		// if (uploadedImage) {
-		// 	console.log('success');
-		// } else {
-		// 	console.log('error');
-		// }
 		axios
 			.post('http://localhost:5000/predict', formData)
-			.then((res) => console.log(res))
+			.then((res) => setResult(res))
+			.then(() => console.log(result))
 			.catch((err) => console.warn(err));
 	};
 
 	return (
 		<>
-			{/* <Box
+			<Box
 				backgroundImage="url('hero.jpg')"
 				minH='100vh'
 				bgPosition='center'
 				bgRepeat='no-repeat'
 				bgSize='cover'
-				px='10%'> */}
-			<Heading textAlign='center'>Sign Language Detection</Heading>
-			<form onSubmit={setImageAction}>
-				<Input type='file' name='image' onChange={handleChange} />
-				<Button type='submit' name='upload'>
-					Upload
-				</Button>
-			</form>
-			{/* </Box> */}
+				px='20%'>
+				<br />
+				<br />
+				<Heading fontSize='3em' textAlign='center' color='#fff'>
+					SIGN LANGUAGE DETECTION
+				</Heading>
+				<br />
+				<br />
+				<br />
+				<Heading textAlign='center' color='#fff'>
+					Upload image to decode sign
+				</Heading>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<form onSubmit={setImageAction}>
+					<Input type='file' name='image' onChange={handleChange} />
+					<Button type='submit' name='upload' mx='auto' width='100%'>
+						Upload Image
+					</Button>
+				</form>
+				<Text color='#fff'>Result:{result}</Text>
+			</Box>
 		</>
 	);
 }
