@@ -54,11 +54,14 @@ export default function Home() {
 				<br />
 				<form onSubmit={setImageAction}>
 					<Input type='file' name='image' onChange={handleChange} />
-					<Button type='submit' name='upload' mx='auto' width='100%'>
+					<Button type='submit' name='upload' mx='auto' width='100%' mt='8px'>
 						Upload Image
 					</Button>
 				</form>
-				<Heading color='#000' textAlign='center'>Result:{result}</Heading>
+				<br/>
+				<Flex justifyContent='center' p='16px'>
+				<Heading color='#fff' fontSize='2em' textAlign='center' bgColor='#000' p='16px'>Result:{result}</Heading>
+				</Flex>
 			</Box>
 		</>
 	);
